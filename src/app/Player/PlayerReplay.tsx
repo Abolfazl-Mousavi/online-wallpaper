@@ -10,7 +10,7 @@ interface Props {
 }
 
 const PlayerReplay = ({ audioState, audioControls, className = '' }: Props) => {
-  const states = ['none', 'one', 'all'];
+  const states = ['all','none', 'one', ];
   const [replayState, setReplayState] = React.useState(0);
   const [init, setInit] = React.useState<boolean>(false);
 

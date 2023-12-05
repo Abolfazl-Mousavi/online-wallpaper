@@ -9,9 +9,10 @@ import Icon from './global/Icon';
 import useAudioSource, { STATE as AUDIO_STATE } from './hooks/useAudioSource';
 import { videosDB } from './store';
 
+
 let startTime = 0;
-const Audio = ({ className = '' }: { className?: string }) => {
-  const { videoID } = useParams<{ videoID: string }>();
+const Audio = ({YTID}:any,{ className = '' }: { className?: string }) => {
+  const videoID = YTID;
   const audio = useAudioSource(videoID);
 
   React.useEffect(() => {
@@ -55,34 +56,7 @@ const Audio = ({ className = '' }: { className?: string }) => {
           {audio.data.title} - {app.title}
         </title>
       </Helmet>
-      <div className="audio__about">
-        <h3>{audio.data.title}</h3>
-        <p className="audio__about-author">{audio.data.author}</p>
-        <button
-          className="audio__about-open"
-          onClick={() => {
-            window.open(
-              `https://www.youtube.com/watch?v=${videoID}&t=${Math.round(
-                startTime
-              )}`,
-              '_blank'
-            );
-          }}
-        >
-          <Icon icon="youtube" className="audio__about-open-icon" />
-          open video
-        </button>
-        {audio.data.description && (
-          <p
-            dangerouslySetInnerHTML={{
-              __html: nl2br(audio.data.description),
-            }}
-          />
-        )}
-        <Link to="/" className="audio__about-close">
-          <Icon icon="arrow" className="audio__about-close-icon" /> back
-        </Link>
-      </div>
+   
       <Player
         source={{ ...audio.data, ...{ id: videoID } }}
         className="audio__player"

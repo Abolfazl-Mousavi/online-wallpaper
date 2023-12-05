@@ -6,9 +6,9 @@ import useMediaSession from '../hooks/useMediaSession';
 import { videosDB, settingsDB } from '../store';
 import BufferInfo from './BufferInfo';
 import PlayerControls from './PlayerControls';
-import PlayerPlaybackSpeed from './PlayerPlaybackSpeed';
 import PlayerReplay from './PlayerReplay';
-import PlayerTimeline from './PlayerTimeline';
+import PlayerVolume from './PlayerVolume';
+
 
 interface Props {
   source: Audio;
@@ -79,12 +79,6 @@ const Player = ({ source, className = '' }: Props) => {
     controls: {
       play: audio.controls.play,
       pause: audio.controls.pause,
-      seekbackward: () => audio.controls.seek(audio.state.time - 30),
-      seekforward: () => audio.controls.seek(audio.state.time + 30),
-      seekto: (details) => {
-        console.log('seekto details', details);
-        return audio.controls.seek(details.seekTime);
-      },
     },
   });
 
@@ -114,11 +108,6 @@ const Player = ({ source, className = '' }: Props) => {
     <div className={`player ${className}`}>
       {audio.elementNode}
       <div className="player__controls">
-        <PlayerPlaybackSpeed
-          audioState={audio.state}
-          audioControls={audio.controls}
-          className="player__speed"
-        />
         <PlayerControls
           audioState={audio.state}
           audioControls={audio.controls}
@@ -128,12 +117,12 @@ const Player = ({ source, className = '' }: Props) => {
           audioControls={audio.controls}
           className="player__replay"
         />
+        <PlayerVolume
+          audioState={audio.state}
+          audioControls={audio.controls}
+      
+        />
       </div>
-      <PlayerTimeline
-        audioState={audio.state}
-        audioControls={audio.controls}
-        className="player__timeline"
-      />
       {showBufferInfo && (
         <BufferInfo onClose={() => setShowBufferInfo(false)} />
       )}

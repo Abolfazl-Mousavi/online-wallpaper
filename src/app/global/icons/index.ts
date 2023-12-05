@@ -12,6 +12,8 @@ import ReplayOne from './replay-one.svg';
 import Stop from './stop.svg';
 import Warning from './warning.svg';
 import Youtube from './youtube.svg';
+import headphones from './headphones.svg';
+
 
 export type IconNamesT =
   | 'threeZeroMinus'
@@ -26,7 +28,9 @@ export type IconNamesT =
   | 'replayOne'
   | 'stop'
   | 'warning'
-  | 'youtube';
+  | 'youtube'
+  | 'headphones'
+  ;
 
 export default {
   threeZeroMinus: ThreeZeroMinus,
@@ -42,4 +46,5 @@ export default {
   stop: Stop,
   warning: Warning,
   youtube: Youtube,
+  headphones: headphones,
 } as Record<IconNamesT, React.FC>;

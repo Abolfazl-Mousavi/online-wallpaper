@@ -2,6 +2,7 @@ import React from 'react';
 import Icon from '../global/Icon';
 import { HTMLAudioState, HTMLAudioControls } from '../hooks/useAudio';
 
+
 interface Props {
   audioState: HTMLAudioState;
   audioControls: HTMLAudioControls;
@@ -35,6 +36,7 @@ const PlayerControls = ({ audioState, audioControls }: Props) => (
     >
       <Icon icon="threeZeroPlus" />
     </button>
+    
   </React.Fragment>
 );
 

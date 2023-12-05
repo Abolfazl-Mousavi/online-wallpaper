@@ -5,7 +5,7 @@
   --spacing-page: 2.5rem;
   --transition-speed: 200ms;
 
-  --c-p: #696960;
+  --c-p: #e2e2e2;
   --c-h: #1d1d1b;
   --c-bkg: #dbdbdb;
   --c-bkg-2: #cecece;
@@ -42,11 +42,16 @@
 }
 
 body.no-outline {
-  a, button, .o-helloform__element--type-checkbox .o-helloform__input:focus + label:after, .o-helloform__input:focus {
+  a,
+  button,
+  .o-helloform__element--type-checkbox .o-helloform__input:focus + label:after,
+  .o-helloform__input:focus {
     outline: none;
   }
 }
-
+body {
+  background: #1d1d1b;
+}
 @import 'styles/reset.css';
 @import 'styles/typography.css';
 @import 'styles/document.css';
