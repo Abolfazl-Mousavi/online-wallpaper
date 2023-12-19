@@ -4,5 +4,5 @@
   "description": "online wallpaper with audio player",
   "colorbkg": "#dbdbdb",
   "color": "#000",
-  "website": "localhost:8080"
+  "website": "onlinewallpaper.netlify.app"
 }
