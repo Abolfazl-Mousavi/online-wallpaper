@@ -30,7 +30,7 @@ const Player = ({ source, className = '' }: Props) => {
       : source.url,
     setError: (error) => {
       if (useProxy) {
-        setError(error);
+        setError(error);  
       } else {
         setUseProxy(true);
       }

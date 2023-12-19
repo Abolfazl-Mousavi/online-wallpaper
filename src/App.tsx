@@ -2,34 +2,59 @@ import cn from 'classnames';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Helmet from 'react-helmet';
-import { BrowserRouter, useLocation } from 'react-router-dom';
+import { BrowserRouter, useLocation, useParams } from 'react-router-dom';
+import Icon from '@global/Icon';
 import './App.css';
 import app from '../app.json';
 import { version } from '../package.json';
 import Audio from './app/Audio';
+import Setup from './app/Setup';
 import { matomoSetPage } from './app/common/matomo';
+import MostPapularSetups from './assets/MostPapularSetups';
 
 const App: React.FC = () => {
-  const [getId, setGetId] = React.useState<string>('jyuFl2bZBb4');
+  const [getId, setGetId] = React.useState<string>(
+    localStorage.getItem('CURRENT_YTID')
+  );
+  const [getBGImage, setGetBGImage] = React.useState<string>(
+    localStorage.getItem('CURRENT_BGIMAGE')
+  );
   const location = useLocation();
   const [init, setInit] = React.useState<boolean>(false);
-
+  const [isOpenShare, setIsOpenShare] = React.useState(false);
   React.useEffect(() => {
     init && matomoSetPage(location.pathname);
-    if (location.pathname === '/') {
-      document.body.classList.add('home');
-    } else {
-      document.body.classList.remove('home');
+    if (location.pathname.includes('setup')) {
+      try {
+        let decryptedSetup = atob(location.pathname.replace('/setup/', ''));
+        let validatedSetup = JSON.parse(decryptedSetup);
+        setGetBGImage(validatedSetup.ImageID);
+        setGetId(validatedSetup.youtubeID);
+      } catch (err) {
+        console.log(err);
+      }
+    } else if (location.pathname.includes('play')) {
+      setGetId(location.pathname.replace('/play/', ''));
     }
+    console.log(btoa(JSON.stringify(MostPapularSetups[4])));
+
     setInit(true);
   }, [location]);
 
+  React.useEffect(() => {
+    document.body.style.backgroundImage = `url(${getBGImage})`;
+    localStorage.setItem('CURRENT_BGIMAGE', `${getBGImage}`);
+  }, [getBGImage]);
+  React.useEffect(() => {
+    localStorage.setItem('CURRENT_YTID', `${getId}`);
+  }, [getId]);
   return (
     <React.Fragment>
       <Helmet>
         <title>{app.title}</title>
         <meta name="app-version" content={version} />
       </Helmet>
+
       <div class="main">
         <label class="menu-button-wrapper" for="">
           <input type="checkbox" class="menu-button" />
@@ -44,7 +69,7 @@ const App: React.FC = () => {
           <div class="item-list">
             <dd class="inputbox-content">
               <input
-                id="input0"
+                id="input"
                 type="text"
                 placeholder={'YouTube id'}
                 onChange={(e) => setGetId(e.currentTarget.value)}
@@ -52,10 +77,46 @@ const App: React.FC = () => {
               <label for="input0">YouTube ID</label>
               <span class="underline"></span>
             </dd>
+            <dd class="inputbox-content">
+              <input
+                id="input"
+                type="text"
+                placeholder={'Background URL'}
+                onChange={(e) => setGetBGImage(e.currentTarget.value)}
+              />
+              <label for="input0">Background Image</label>
+              <span class="underline"></span>
+            </dd>
+            <dd class="inputbox-content">
+              <button
+                id="export"
+                onClick={() =>
+                  navigator.clipboard.writeText(
+                    `${app.website}/setup/${btoa(
+                      JSON.stringify({
+                        ImageID: getBGImage,
+                        youtubeID: getId,
+                      })
+                    )}`
+                  )
+                }
+              >
+                export
+              </button>
+            </dd>
           </div>
         </label>
+        {isOpenShare && <Setup />}
       </div>
-      <Audio className="app__content" YTID={getId} />
+      <div
+        onClick={() => {
+          setIsOpenShare(!isOpenShare);
+        }}
+        className={'share'}
+      >
+        <Icon className="player__play-icon " icon={'share'} />
+      </div>
+      <Audio key={getId} className="app__content" YTID={getId} />
     </React.Fragment>
   );
 };

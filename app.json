@@ -1,7 +1,8 @@
 {
-  "title": "YouTube Audio Player",
-  "short": "YTAudio",
-  "description": "An awesome audio player for YouTube videos",
+  "title": "Online Wallpapers",
+  "short": "OWo",
+  "description": "online wallpaper with audio player",
   "colorbkg": "#dbdbdb",
-  "color": "#000"
+  "color": "#000",
+  "website": "localhost:8080"
 }

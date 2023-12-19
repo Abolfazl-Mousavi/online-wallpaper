@@ -13,6 +13,7 @@ import Stop from './stop.svg';
 import Warning from './warning.svg';
 import Youtube from './youtube.svg';
 import headphones from './headphones.svg';
+import share from './share.svg';
 
 
 export type IconNamesT =
@@ -21,6 +22,7 @@ export type IconNamesT =
   | 'arrow'
   | 'loading'
   | 'pause'
+  | 'share'
   | 'play'
   | 'reload'
   | 'replayAll'
@@ -38,6 +40,7 @@ export default {
   arrow: Arrow,
   loading: Loading,
   pause: Pause,
+  share: share,
   play: Play,
   reload: Reload,
   replayAll: ReplayAll,

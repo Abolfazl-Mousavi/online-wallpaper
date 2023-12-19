@@ -48,7 +48,7 @@
   }
 }
 body {
-  background: url('../src/assets/as.jpg');
+  background: url('https://img.uhdpaper.com/wallpaper/anime-girl-sports-car-853@1@m-preview.jpg?dl');
   background-size: cover;
   background-position: center;
 }
@@ -139,8 +139,6 @@ body.home .app__back {
   display: inline-block;
   top: 1rem;
   left: 1rem;
-  
-
 
   .item-list {
     position: absolute;
@@ -150,21 +148,19 @@ body.home .app__back {
     transition: all 0.4s cubic-bezier(0.54, -0.1, 0.57, 0.57);
     background-color: #000;
     color: #fff;
-    width: 200px;
-    left: 50%;
-    padding: 15px 0;
+    left: 150%;
+    padding: 15px 10px;
+
     text-align: left;
     border-radius: 100px;
     font-weight: 300;
     opacity: 0;
     user-select: none;
-
-    div {
-      padding: 10px 30px;
-      cursor: pointer;
-    }
   }
-
+  .item-list > dd {
+    padding: 5px 0;
+    cursor: pointer;
+  }
   .menu-button {
     position: absolute;
     width: 70px;
@@ -201,59 +197,47 @@ body.home .app__back {
   }
 }
 
-
-
-
-.input{
-  &::before{
-    content:'';
-    display:block;
-    position: absolute;
-    top:0;
-    left:0;
-    width: 100%;
-    height: 300px;
-    background: $dark-primary-color;
+.input-header {
+  position: relative;
+  padding-top: 80px;
+  color: #fff;
+  h1 {
+    padding-bottom: 25px;
+    font-size: 3.25em;
+    font-weight: 100;
   }
-  &-header{
+}
+
+.input {
+  & &-content {
     position: relative;
-    padding-top:80px;
-    color: #fff;
-    h1{
-      padding-bottom:25px;
-      font-size:3.25em;
-      font-weight:100;
-    }
-  }
-  &-content{
-    position: relative;
-    padding:44px 55px;
+    padding: 44px 55px;
     background: #fff;
-    z-index:10;
-    
-    h2{
-      padding-bottom:45px;
-      font-size:1.625em;
-      font-weight:bold;
+    z-index: 10;
+
+    h2 {
+      padding-bottom: 45px;
+      font-size: 1.625em;
+      font-weight: bold;
       vertical-align: middle;
-      span{
+      span {
         display: inline-block;
-        margin-left:10px;
-        padding:5px 6px 3px;
-        border:1px solid $sub-yellow;
-        border-radius:4px;
-        font-size:0.85rem;
+        margin-left: 10px;
+        padding: 5px 6px 3px;
+        border: 1px solid $sub-yellow;
+        border-radius: 4px;
+        font-size: 0.85rem;
         vertical-align: middle;
         color: $sub-yellow;
       }
     }
-    .inputbox{
+    .inputbox {
       overflow: hidden;
       position: relative;
-      padding:15px 0 28px 200px;
-      &-title{
+      padding: 15px 0 28px 200px;
+      &-title {
         position: absolute;
-        top:15px;
+        top: 15px;
         left: 0;
         width: 200px;
         height: 30px;
@@ -261,52 +245,53 @@ body.home .app__back {
         font-weight: bold;
         line-height: 30px;
       }
-      &-content{
+      &-content {
         position: relative;
         width: 100%;
-        input{
+        input {
           width: 100%;
           height: 30px;
           box-sizing: border-box;
           line-height: 30px;
-          font-size:14px;
-          border:0;
+          font-size: 14px;
+          border: 0;
           background: none;
-          border-bottom:1px solid #ccc;
-          outline:none;
+          border-bottom: 1px solid #ccc;
+          outline: none;
           border-radius: 0;
           -webkit-appearance: none;
-          &:focus,&:valid{
-            &~label{
+          &:focus,
+          &:valid {
+            & ~ label {
               color: $accent-color;
               transform: translateY(-20px);
-              font-size:0.825em;
-              cursor:default;
+              font-size: 0.825em;
+              cursor: default;
             }
           }
-          &:focus{
-            &~.underline{
+          &:focus {
+            & ~ .underline {
               width: 100%;
             }
           }
         }
-        label{
+        label {
           position: absolute;
-          top:0;
-          left:0;
+          top: 0;
+          left: 0;
           height: 30px;
           line-height: 30px;
-          color:#ccc;
-          cursor:text;
+          color: #ccc;
+          cursor: text;
           transition: all 200ms ease-out;
-          z-index:10;
+          z-index: 10;
         }
-        .underline{
-          content:'';
+        .underline {
+          content: '';
           display: block;
           position: absolute;
-          bottom:-1px;
-          left:0;
+          bottom: -1px;
+          left: 0;
           width: 0;
           height: 2px;
           background: $accent-color;
@@ -314,28 +299,63 @@ body.home .app__back {
         }
       }
     }
-    
-    .btns{
-      padding:30px 0 0 200px;
-      .btn{
-        display:inline-block;
-        margin-right:2px;
+
+    .btns {
+      padding: 30px 0 0 200px;
+      .btn {
+        display: inline-block;
+        margin-right: 2px;
         padding: 10px 25px;
         background: none;
-        border:1px solid #c0c0c0;
-        border-radius:2px;
+        border: 1px solid #c0c0c0;
+        border-radius: 2px;
         color: #666;
-        font-size:1.125em;
-        outline:none;
+        font-size: 1.125em;
+        outline: none;
         transition: all 100ms ease-out;
-        &:hover,&:focus{
+        &:hover,
+        &:focus {
           transform: translateY(-3px);
         }
-        &-confirm{
-        border:1px solid $accent-color;
-        background: $accent-color;
-        color: #fff;}
+        &-confirm {
+          border: 1px solid $accent-color;
+          background: $accent-color;
+          color: #fff;
+        }
       }
     }
   }
+}
+.input::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: $dark-primary-color;
+}
+
+.share {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: #000;
+  border-radius: 20px;
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: 0.4;
+}
+.share:hover {
+  opacity: 1;
+}
+#export {
+  padding: 0.5rem;
+  border: 1px solid;
+  border-radius: 1rem;
 }
