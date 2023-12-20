@@ -6,10 +6,22 @@ import { HTMLAudioState, HTMLAudioControls } from '../hooks/useAudio';
 interface Props {
   audioState: HTMLAudioState;
   audioControls: HTMLAudioControls;
+  volume: string;
+  setVolume: any;
 }
-const PlayerControls = ({ audioState, audioControls }: Props) => {
+const PlayerControls = ({
+  audioState,
+  audioControls,
+  volume,
+  setVolume,
+}: Props) => {
   const [isVolumeOpen, setisVolumeOpen] = React.useState(false);
-  const [volume, setVolume] = React.useState(50);
+
+  function volumeSetter(e: any) {
+    audioControls.setVolume(volume);
+    setVolume(e.currentTarget.value);
+    localStorage.setItem('VOLUME', e.currentTarget.value);
+  }
   return (
     <React.Fragment>
       {isVolumeOpen && (
@@ -20,8 +32,7 @@ const PlayerControls = ({ audioState, audioControls }: Props) => {
             min="0"
             max="100"
             onChange={(e) => {
-              audioControls.setVolume(parseFloat(e.currentTarget.value) / 100);
-              setVolume(parseFloat(e.currentTarget.value) );
+              volumeSetter(e);
             }}
           />
         </div>

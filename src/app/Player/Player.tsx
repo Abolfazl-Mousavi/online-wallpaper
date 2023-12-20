@@ -9,7 +9,6 @@ import PlayerControls from './PlayerControls';
 import PlayerReplay from './PlayerReplay';
 import PlayerVolume from './PlayerVolume';
 
-
 interface Props {
   source: Audio;
   className?: string;
@@ -21,6 +20,9 @@ const Player = ({ source, className = '' }: Props) => {
   const [showBufferInfo, setShowBufferInfo] = React.useState<boolean>(null);
   const [bufferTime, setBufferTime] = React.useState<number>(0);
   const [timer, setTimer] = React.useState<any>(null);
+  const [volume, setVolume] = React.useState(
+    localStorage.getItem('VOLUME') || `50`
+  );
 
   const setError = (e) => console.log(e);
 
@@ -30,7 +32,7 @@ const Player = ({ source, className = '' }: Props) => {
       : source.url,
     setError: (error) => {
       if (useProxy) {
-        setError(error);  
+        setError(error);
       } else {
         setUseProxy(true);
       }
@@ -100,6 +102,8 @@ const Player = ({ source, className = '' }: Props) => {
       videosDB.updateObject(source.id, {
         time: audio.state.time,
       });
+
+      audio.controls.setVolume(volume);
     },
     [audio.state.time]
   );
@@ -120,7 +124,8 @@ const Player = ({ source, className = '' }: Props) => {
         <PlayerVolume
           audioState={audio.state}
           audioControls={audio.controls}
-      
+          volume={volume}
+          setVolume={setVolume}
         />
       </div>
       {showBufferInfo && (

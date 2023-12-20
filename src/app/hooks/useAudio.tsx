@@ -1,7 +1,6 @@
 import { VNode } from 'preact';
 import React from 'react';
 
-
 export interface HTMLAudioState {
   buffered: {
     start: number;
@@ -21,7 +20,7 @@ export interface HTMLAudioControls {
   seek: (time: number) => void;
   setPlaybackRate: (rate: number) => void;
   setEndedCallback: (callback: Function) => void;
-  setVolume: (volume: number) => void;
+  setVolume: (volume: string) => void;
 }
 
 interface HTMLAudioProps {
@@ -191,9 +190,10 @@ export default ({
       });
       el.playbackRate = rate;
     },
-    setVolume: (volume: number) => {
+    setVolume: (vol: string) => {
       const el = ref.current;
-     el.volume = volume
+      let con = parseFloat(vol) / 100;
+      el.volume = con;
     },
     setEndedCallback: (callback: Function) => {
       setState({ endedCallback: callback });

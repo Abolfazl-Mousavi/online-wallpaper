@@ -14,6 +14,7 @@ import Warning from './warning.svg';
 import Youtube from './youtube.svg';
 import headphones from './headphones.svg';
 import share from './share.svg';
+import X from './X.svg';
 
 
 export type IconNamesT =
@@ -32,6 +33,7 @@ export type IconNamesT =
   | 'warning'
   | 'youtube'
   | 'headphones'
+  | 'X'
   ;
 
 export default {
@@ -50,4 +52,5 @@ export default {
   warning: Warning,
   youtube: Youtube,
   headphones: headphones,
+  X: X,
 } as Record<IconNamesT, React.FC>;

@@ -21,6 +21,7 @@ const App: React.FC = () => {
   );
   const location = useLocation();
   const [init, setInit] = React.useState<boolean>(false);
+
   const [isOpenShare, setIsOpenShare] = React.useState(false);
   React.useEffect(() => {
     init && matomoSetPage(location.pathname);
@@ -36,7 +37,6 @@ const App: React.FC = () => {
     } else if (location.pathname.includes('play')) {
       setGetId(location.pathname.replace('/play/', ''));
     }
-    console.log(btoa(JSON.stringify(MostPapularSetups[4])));
 
     setInit(true);
   }, [location]);
@@ -92,7 +92,7 @@ const App: React.FC = () => {
                 id="export"
                 onClick={() =>
                   navigator.clipboard.writeText(
-                    `${app.website}/setup/${btoa(
+                    `https://${app.website}/setup/${btoa(
                       JSON.stringify({
                         ImageID: getBGImage,
                         youtubeID: getId,
@@ -114,7 +114,10 @@ const App: React.FC = () => {
         }}
         className={'share'}
       >
-        <Icon className="player__play-icon " icon={'share'} />
+        <Icon
+          className="player__play-icon "
+          icon={isOpenShare ? 'X' : 'share'}
+        />
       </div>
       <Audio key={getId} className="app__content" YTID={getId} />
     </React.Fragment>
