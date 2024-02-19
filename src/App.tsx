@@ -11,6 +11,7 @@ import Audio from './app/Audio';
 import Setup from './app/Setup';
 import { matomoSetPage } from './app/common/matomo';
 import MostPapularSetups from './assets/MostPapularSetups';
+import { youtubeParser } from '@common/helpers';
 
 const App: React.FC = () => {
   const [getId, setGetId] = React.useState<string>(
@@ -82,7 +83,7 @@ const App: React.FC = () => {
                 id="input"
                 type="text"
                 placeholder={'Background URL'}
-                onChange={(e) => setGetBGImage(e.currentTarget.value)}
+                onChange={(e) => setGetBGImage(youtubeParser(e.currentTarget.value))}
               />
               <label for="input0">Background Image</label>
               <span class="underline"></span>
